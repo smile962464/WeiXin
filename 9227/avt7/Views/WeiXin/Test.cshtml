@@ -1,0 +1,190 @@
+﻿@{
+	/// <reference path="jquery-1.7.1.js" />
+	ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<style type="text/css">
+	div#buttons {
+		font-size: 1.4em;
+		margin: 30px 10px;
+	}
+	div#buttons a{
+		padding: 5px 10px;
+		background-color:blue;
+		color:white;
+		text-decoration:none;
+		margin-right:20px;
+	}
+	div#buttons a:hover{
+		background-color:darkblue;
+		text-decoration:none;
+	}
+
+	div#controller, div#inputs {
+		margin: 30px 10px;
+	}
+	div#controller select, div#inputs input{
+		width:150px;
+		/*margin:0;*/
+		padding:0;
+	}
+</style>
+<div>
+	@ViewBag.msg
+</div>
+
+<div>
+	<div id="controller">
+		<select>
+			<option>avt7</option>
+			<option>Fly</option>
+		</select>
+	</div>
+	<div id="inputs">
+		<input id="textMsg" type="text" value="ZSAM" />
+	</div>
+	<div id="buttons" style="">
+		<a class="send" href="#">Text</a>
+		<a class="send" href="#">Pic</a>
+		<a class="send" href="#">Location</a>
+		<a class="send" href="#">Link</a>
+		<a class="send" href="#">Link_2</a>
+		<a class="send" href="#">Event_1</a>
+		<a class="send" href="#">Event_2</a>
+		<a class="send" href="#">Event_3</a>
+        <a class="send" href="#">Event_4</a>
+	</div>
+</div>
+@*<a class="send" href="#">Link</a>*@
+<div id="msg_rt">
+</div>
+
+
+<script>
+	$(function (e) {
+
+		inMsg_t = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[text]]></MsgType>"
+			+ "<Content><![CDATA[" + $('#textMsg').val() + "]]></Content>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		var inMsg_p = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[image]]></MsgType>"
+			+ "<PicUrl><![CDATA[this is a url]]></PicUrl>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+		var inMsg_lo = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[location]]></MsgType>"
+			+ "<Location_X>23.134521</Location_X>"
+			+ "<Location_Y>113.358803</Location_Y>"
+			+ "<Scale>20</Scale>"
+			+ "<Label><![CDATA[位置信息]]></Label>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		var inMsg_li = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[link]]></MsgType>"
+			+ "<Title><![CDATA[公众平台官网链接]]></Title>"
+			+ "<Description><![CDATA[公众平台官网链接]]></Description>"
+			+ "<Url><![CDATA[url]]></Url>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		var inMsg_li_2 = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[link]]></MsgType>"
+			+ "<Title><![CDATA[公众平台官网链接]]></Title>"
+			+ "<Description><![CDATA[公众平台官网链接]]></Description>"
+			+ "<Url><![CDATA[this is a url]]></Url>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		var inMsg_e_1 = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[event]]></MsgType>"
+			+ "<Event><![CDATA[subscribe]]></Event>"
+			+ "<EventKey><![CDATA[EVENTKEY]]></EventKey>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		var inMsg_e_2 = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[event]]></MsgType>"
+			+ "<Event><![CDATA[unsubscribe]]></Event>"
+			+ "<EventKey><![CDATA[EVENTKEY]]></EventKey>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		var inMsg_e_3 = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[event]]></MsgType>"
+			+ "<Event><![CDATA[CLICK]]></Event>"
+			+ "<EventKey><![CDATA[DYNAMIC_FLIGHT]]></EventKey>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		var inMsg_e_4 = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+			+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+			+ "<CreateTime>1365749824</CreateTime>"
+			+ "<MsgType><![CDATA[event]]></MsgType>"
+			+ "<Event><![CDATA[CLICK]]></Event>"
+			+ "<EventKey><![CDATA[METAR_FILTER_THUNDER]]></EventKey>"
+			+ "<MsgId>5865850828597755958</MsgId>"
+			+ "</xml>";
+
+		
+
+		var inMsg = {
+			"Text": inMsg_t,
+			"Pic": inMsg_p,
+			"Location": inMsg_lo,
+			"Link": inMsg_li,
+			"Link_2": inMsg_li_2,
+			"Event_1": inMsg_e_1,
+			"Event_2": inMsg_e_2,
+			"Event_3": inMsg_e_3,
+			"Event_4": inMsg_e_4
+		};
+        
+
+		$('.send').click(function (e) {
+
+			e.preventDefault();
+
+			var key = $(this).text();
+			if (key == "Text") {
+				inMsg["Text"] = "<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName>"
+					+ "<FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName>"
+					+ "<CreateTime>1365749824</CreateTime>"
+					+ "<MsgType><![CDATA[text]]></MsgType>"
+					+ "<Content><![CDATA[" + $('#textMsg').val() + "]]></Content>"
+					+ "<MsgId>5865850828597755958</MsgId>"
+					+ "</xml>";
+			}
+
+			var product = $('div#controller select').val();
+
+			$.post("/" + product, inMsg[key], function (data) {
+
+				$('#msg_rt').text(data);
+
+			});
+			return false;
+		});
+	});
+</script>
