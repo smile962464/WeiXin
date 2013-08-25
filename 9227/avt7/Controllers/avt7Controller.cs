@@ -24,6 +24,7 @@ namespace avt7.Controllers
 		[HttpGet]
 		public string Index(string signature, string timestamp, string nonce, string echostr)
 		{
+			//var appPath = Request.PhysicalApplicationPath;
 			//Utities.Log(appPath + "weixinLog/sig_" + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".log", echostr);
 			return echostr;
 		}
