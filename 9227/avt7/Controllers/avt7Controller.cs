@@ -24,7 +24,7 @@ namespace avt7.Controllers
 		[HttpGet]
 		public string Index(string signature, string timestamp, string nonce, string echostr)
 		{
-			//Utities.Log("D:/weixinLog/sig_" + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".txt", echostr);
+			//Utities.Log(appPath + "weixinLog/sig_" + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".txt", echostr);
 			return echostr;
 		}
 
@@ -33,13 +33,14 @@ namespace avt7.Controllers
 		[ValidateInput(false)]
 		public string Index()
 		{
+			var appPath = Request.PhysicalApplicationPath;
 			try
 			{
 				Stream input = Request.InputStream;
 
 				XmlDocument xmlDoc = new XmlDocument();
 				xmlDoc.Load(Request.InputStream);
-				Utities.Log("D:/weixinLog/msg_" + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".txt", xmlDoc.InnerXml);
+				Utities.Log(appPath + "weixinLog/msg_" + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".txt", xmlDoc.InnerXml);
 
 				TMessage MSG = new TMessage(xmlDoc);
 
@@ -57,7 +58,7 @@ namespace avt7.Controllers
 			}
 			catch (Exception e)
 			{
-				Utities.Log("D:/weixinLog/msg_Error.txt", e.Message);
+				Utities.Log(appPath + "weixinLog/msg_Error.txt", e.Message);
 			}
 			return "";
 		}
