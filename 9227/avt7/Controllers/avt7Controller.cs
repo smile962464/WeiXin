@@ -14,7 +14,6 @@ using WeiXin;
 using WeiXin.Models;
 
 using XiamenAir.DBTools;
-using RegExp = System.Text.RegularExpressions;
 
 namespace avt7.Controllers
 {
