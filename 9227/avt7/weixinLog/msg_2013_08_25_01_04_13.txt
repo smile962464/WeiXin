@@ -1,1 +1,0 @@
-<xml><ToUserName><![CDATA[gh_44942f13bc61]]></ToUserName><FromUserName><![CDATA[o3bikjo_2ieBwCw1PECJHu-0VyjA]]></FromUserName><CreateTime>1365749824</CreateTime><MsgType><![CDATA[link]]></MsgType><Title><![CDATA[公众平台官网链接]]></Title><Description><![CDATA[公众平台官网链接]]></Description><Url><![CDATA[url]]></Url><MsgId>5865850828597755958</MsgId></xml>
