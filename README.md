@@ -1,4 +1,7 @@
 WeiXin
 ======
 
-A WeiXin Developer Framework
+A WeiXin Developer Framework 
+
+
+By Peterinor
