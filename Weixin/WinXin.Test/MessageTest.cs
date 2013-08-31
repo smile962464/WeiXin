@@ -7,7 +7,7 @@ namespace WinXin.Test
 	public class MessageTest
 	{
 		[TestMethod]
-		public void Message_TestMethod1()
+		public void Message_TestMethod()
 		{
 		}
 	}
