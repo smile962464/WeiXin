@@ -12,10 +12,10 @@ Winxin = {};
 
 Winxin.Utities = {
     getTimeTicks: function (dt) {
-
+         return dt.getTime();
     },
     getTime: function (ticks) {
-
+         return new Date(ticks);
     },
     log: function () {
 
