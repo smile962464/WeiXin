@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiXin", "WeiXin\WeiXin.csproj", "{54917DB5-86B4-42B4-BC9E-D7EFA4C9E935}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinXin.Test", "WinXin.Test\WinXin.Test.csproj", "{A0BE8689-8122-4BF5-815D-113389D23F5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54917DB5-86B4-42B4-BC9E-D7EFA4C9E935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54917DB5-86B4-42B4-BC9E-D7EFA4C9E935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54917DB5-86B4-42B4-BC9E-D7EFA4C9E935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54917DB5-86B4-42B4-BC9E-D7EFA4C9E935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BE8689-8122-4BF5-815D-113389D23F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BE8689-8122-4BF5-815D-113389D23F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BE8689-8122-4BF5-815D-113389D23F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BE8689-8122-4BF5-815D-113389D23F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
