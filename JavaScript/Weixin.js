@@ -10,12 +10,74 @@
 Winxin = {};
 
 
+Winxin.MessageHandlers = function (stream) {
+
+    this.outStream = stream;
+
+    this.msgHandlers = {
+        "text": [],
+        "image": [],
+        "location": [],
+        "link": [],
+        "event": [],
+        "voice": []
+    };
+
+}
+
+Winxin.MessageHandlers.prototype = {
+    addHandler: function (type, handler) {
+        if (typeof(handler) == "object") {
+            this.msgHandlers[type].push(function (msg) {
+                return handler.handle();
+            });
+        }
+        if (typeof(handler) == "function") {
+            this.msgHandlers[type].push(handler);
+        }
+    },
+
+    handle: function (msg) {
+        if(typeof(msg) == "string"){
+            msg = this.getMsgFromXml(msg);
+        }
+
+        var type = msg.type;
+
+        try {
+            var handlers = this.msgHandlers[type];
+            if (handlers) {
+                for (var i = 0; i < handlers.length; i++) {
+                       var h = handlers[i];
+                    var r = h(msg);
+                    if(r.handled){
+                        this.outStream.write(this.getMsgFromXml(r.msg));
+                    }
+                }
+            }
+        } catch (e) {
+            return false;
+        }
+        return false;
+    },
+
+    getMsgFromXml : function(xml){
+        var msg = {};
+        return msg;
+    },
+    getXmlFromMsg : function(msg){
+        var xml = '';
+        return xml;
+    }
+
+}
+
 Winxin.Utities = {
     getTimeTicks: function (dt) {
-         return dt.getTime();
+        return dt.getTime();
     },
     getTime: function (ticks) {
-         return new Date(ticks);
+        return new Date(ticks);
     },
     log: function () {
 
@@ -39,3 +101,4 @@ Winxin.Utities = {
 };
 
 
+exports.Winxin = Winxin;
