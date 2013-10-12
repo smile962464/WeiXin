@@ -7,6 +7,9 @@
  * Description:
  */
 
+var crypto = require("crypto");
+var xml = require("node-xml")
+
 Winxin = {};
 
 
@@ -38,7 +41,7 @@ Winxin.MessageHandlers.prototype = {
     },
 
     handle: function (msg) {
-        if(typeof(msg) == "string"){
+        if (typeof(msg) == "string") {
             msg = this.getMsgFromXml(msg);
         }
 
@@ -48,9 +51,9 @@ Winxin.MessageHandlers.prototype = {
             var handlers = this.msgHandlers[type];
             if (handlers) {
                 for (var i = 0; i < handlers.length; i++) {
-                       var h = handlers[i];
+                    var h = handlers[i];
                     var r = h(msg);
-                    if(r.handled){
+                    if (r.handled) {
                         this.outStream.write(this.getMsgFromXml(r.msg));
                     }
                 }
@@ -61,11 +64,11 @@ Winxin.MessageHandlers.prototype = {
         return false;
     },
 
-    getMsgFromXml : function(xml){
+    getMsgFromXml: function (xml) {
         var msg = {};
         return msg;
     },
-    getXmlFromMsg : function(msg){
+    getXmlFromMsg: function (msg) {
         var xml = '';
         return xml;
     }
@@ -96,7 +99,24 @@ Winxin.Utities = {
     },
     deleteMenu: function (accessToken) {
 
+    },
+    isLegel: function (signature, timestamp, nonce, token) {
+        var array = new Array();
+        array[0] = timestamp;
+        array[1] = nonce;
+        array[2] = token;
+        array.sort();
+        var hasher = crypto.createHash("sha1");
+        var msg = array[0] + array[1] + array[2];
+        hasher.update(msg);
+        var msg = hasher.digest('hex');
+        if (msg == signature) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
 };
 
