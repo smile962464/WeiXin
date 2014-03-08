@@ -32,7 +32,7 @@ Winxin.MessageHandlers.prototype = {
     addHandler: function (type, handler) {
         if (typeof(handler) == "object") {
             this.msgHandlers[type].push(function (msg) {
-                return handler.handle();
+                return handler.handle(msg);
             });
         }
         if (typeof(handler) == "function") {
@@ -66,11 +66,12 @@ Winxin.MessageHandlers.prototype = {
 
     getMsgFromXml: function (xml) {
         var msg = {};
+//        msg
         return msg;
     },
     getXmlFromMsg: function (msg) {
-        var xml = '';
-        return xml;
+        var o2x = require('object-to-xml');
+        return o2x(msg)
     }
 
 }
@@ -121,4 +122,4 @@ Winxin.Utities = {
 };
 
 
-exports.Winxin = Winxin;
+exports.Weixin = Winxin;
