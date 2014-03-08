@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Libs\Newtonsoft.Json.4.5.6\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -40,8 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckSignature.cs" />
     <Compile Include="IMessageHandler.cs" />
     <Compile Include="MessageHandlers.cs" />
+    <Compile Include="Models\API\AccessToken.cs" />
+    <Compile Include="Models\API\APIResult.cs" />
+    <Compile Include="Models\API\AddGroupResult.cs" />
+    <Compile Include="Models\API\Groups.cs" />
+    <Compile Include="Models\API\SubscriberList.cs" />
+    <Compile Include="Models\API\UserInfo.cs" />
+    <Compile Include="Models\API\Error.cs" />
+    <Compile Include="Models\API\MediaUploadStatus.cs" />
+    <Compile Include="Models\RImageMessage.cs" />
+    <Compile Include="Models\RVoiceMessage.cs" />
+    <Compile Include="Models\RVideoMessage.cs" />
+    <Compile Include="Models\TVideoMessage.cs" />
+    <Compile Include="Models\TVoiceMessage.cs" />
     <Compile Include="Models\TEventMessage.cs" />
     <Compile Include="Models\TImageMessage.cs" />
     <Compile Include="Models\TLinkMessage.cs" />
