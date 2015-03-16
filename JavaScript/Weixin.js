@@ -10,10 +10,32 @@
 var crypto = require("crypto");
 var xml = require("node-xml")
 
+// var https = require('https');
+
 Winxin = {};
 
+Winxin.global = {};
+Winxin.global.accessToken = {
+    token: null,
+    time: new Date()
+}
 
-Winxin.MessageHandlers = function (stream) {
+// setInterval(function(){
+//     https.get("https://api.weixin.qq.com/cgi-bin/tok5en?grant_type=client_credential&appid=" + Weixin.config.APPID + "&secret=" + Weixin.config.APPSECRET + "", function(res) {
+//         res.setEncoding('utf8');
+//         res.on('data', function(chunk) {
+//             console.log('BODY: ' + chunk);
+//         });
+//     });
+// }, 7000 * 1000);
+
+Winxin.config = function(conf) {
+    // body...
+    this.config = conf;
+}
+
+
+Winxin.MessageHandlers = function(stream) {
 
     this.outStream = stream;
 
@@ -29,9 +51,9 @@ Winxin.MessageHandlers = function (stream) {
 }
 
 Winxin.MessageHandlers.prototype = {
-    addHandler: function (type, handler) {
+    addHandler: function(type, handler) {
         if (typeof(handler) == "object") {
-            this.msgHandlers[type].push(function (msg) {
+            this.msgHandlers[type].push(function(msg) {
                 return handler.handle(msg);
             });
         }
@@ -40,7 +62,7 @@ Winxin.MessageHandlers.prototype = {
         }
     },
 
-    handle: function (msg) {
+    handle: function(msg) {
         if (typeof(msg) == "string") {
             msg = this.getMsgFromXml(msg);
         }
@@ -64,12 +86,12 @@ Winxin.MessageHandlers.prototype = {
         return false;
     },
 
-    getMsgFromXml: function (xml) {
+    getMsgFromXml: function(xml) {
         var msg = {};
-//        msg
+        //        msg
         return msg;
     },
-    getXmlFromMsg: function (msg) {
+    getXmlFromMsg: function(msg) {
         var o2x = require('object-to-xml');
         return o2x(msg)
     }
@@ -77,31 +99,32 @@ Winxin.MessageHandlers.prototype = {
 }
 
 Winxin.Utities = {
-    getTimeTicks: function (dt) {
+    getTimeTicks: function(dt) {
         return dt.getTime();
     },
-    getTime: function (ticks) {
+    getTime: function(ticks) {
         return new Date(ticks);
     },
-    log: function () {
+    log: function() {
 
     },
-    getAccessToken: function (appid, appsecret) {
+    getAccessToken: function(appid, appsecret) {
+        var http = require("http");
 
     },
-    addMenuFromFile: function (accessToken, path) {
+    addMenuFromFile: function(accessToken, path) {
 
     },
-    addMenu: function (accessToken, menu) {
+    addMenu: function(accessToken, menu) {
 
     },
-    getMenu: function (accessToken) {
+    getMenu: function(accessToken) {
 
     },
-    deleteMenu: function (accessToken) {
+    deleteMenu: function(accessToken) {
 
     },
-    isLegel: function (signature, timestamp, nonce, token) {
+    isLegel: function(signature, timestamp, nonce, token) {
         var array = new Array();
         array[0] = timestamp;
         array[1] = nonce;
